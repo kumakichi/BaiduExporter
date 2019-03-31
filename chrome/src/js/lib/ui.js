@@ -71,6 +71,7 @@ class UI {
             <div class="export-menu-row">
               <a class="export-menu-button" href="javascript:void(0);" id="aria2Txt" download="aria2c.down">存为Aria2文件</a>
               <a class="export-menu-button" href="javascript:void(0);" id="idmTxt" download="idm.ef2">存为IDM文件</a>
+              <a class="export-menu-button" href="javascript:void(0);" id="sdTxt" download="sd.sh">存为SD脚本</a>
               <a class="export-menu-button" href="javascript:void(0);" id="downloadLinkTxt" download="link.txt">保存下载链接</a>
               <a class="export-menu-button" href="javascript:void(0);" id="copyDownloadLinkTxt">拷贝下载链接</a>
             </div>
@@ -96,6 +97,7 @@ class UI {
     const textMenu = document.querySelector('#textMenu')
     textMenu.querySelector('#aria2Txt').href = ''
     textMenu.querySelector('#idmTxt').href = ''
+    textMenu.querySelector('#sdTxt').href = ''
     textMenu.querySelector('#downloadLinkTxt').href = ''
     textMenu.querySelector('#aria2CmdTxt').value = ''
     textMenu.querySelector('#copyDownloadLinkTxt').dataset.link = ''

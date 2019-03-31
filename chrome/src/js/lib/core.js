@@ -186,11 +186,13 @@ class Core {
     const aria2CmdTxt = []
     const aria2Txt = []
     const idmTxt = []
+    const sdTxt = ["#!/bin/bash", ""]
     const downloadLinkTxt = []
     const prefixTxt = 'data:text/plain;charset=utf-8,'
     fileDownloadInfo.forEach((file) => {
       let aria2CmdLine = `aria2c -c -s10 -k1M -x16 --enable-rpc=false -o ${JSON.stringify(file.name)} ${this.getHeader('aria2Cmd')} ${JSON.stringify(file.link)}`
       let aria2Line = [file.link, this.getHeader('aria2c'), ` out=${file.name}`].join('\n')
+      let sdCmdLine = `sd -n 16 -O ${JSON.stringify(file.name)} ${this.getHeader('aria2Cmd')} ${JSON.stringify(file.link)}`
       const md5Check = this.getConfigData('md5Check')
       if (md5Check) {
         aria2CmdLine += ` --checksum=md5=${file.md5}`
@@ -201,10 +203,12 @@ class Core {
       const idmLine = ['<', file.link, this.getHeader('idm'), '>'].join('\r\n')
       idmTxt.push(idmLine)
       downloadLinkTxt.push(file.link)
+      sdTxt.push(sdCmdLine)
     })
     document.querySelector('#aria2CmdTxt').value = `${aria2CmdTxt.join('\n')}`
     document.querySelector('#aria2Txt').href = `${prefixTxt}${encodeURIComponent(aria2Txt.join('\n'))}`
     document.querySelector('#idmTxt').href = `${prefixTxt}${encodeURIComponent(idmTxt.join('\r\n') + '\r\n')}`
+    document.querySelector('#sdTxt').href = `${prefixTxt}${encodeURIComponent(sdTxt.join('\n') + '\n')}`
     document.querySelector('#downloadLinkTxt').href = `${prefixTxt}${encodeURIComponent(downloadLinkTxt.join('\n'))}`
     document.querySelector('#copyDownloadLinkTxt').dataset.link = downloadLinkTxt.join('\n')
   }
